@@ -1,0 +1,101 @@
+.contact-form__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+    background: #fff;
+}
+
+.contact-form__heading {
+    margin-bottom: 40px;
+    text-align: center;
+    color: #887b72;
+
+}
+
+.form {
+    margin: 0 auto;
+    width: 70%;
+    text-align: left;
+}
+
+.form__group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form__group-title {
+    width: 150px;
+    text-align: left;
+    margin-right: 100px;
+    font-weight: bold;
+}
+
+.form__group-content {
+    flex: 1;
+}
+
+.form__label--item {
+    flex-direction: column;
+}
+
+.form__label--required {
+    margin-left: 5px;
+    padding: 4px 6px;
+    border-radius:3px;
+    color: #ffd8d5;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.form__input--text {
+    display: flex;
+}
+
+.form__input--textarea textarea {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    height: 180px;
+    appearance: none;
+}
+
+.form__input--text input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    height: 40px;
+}
+
+.form__input--radio {
+    display: inline-block;
+    align-items: center;
+}
+
+.form__input--radio label {
+    display: inline-block;
+    margin-right: 50px;
+    align-items: center;
+}
+
+.form__button {
+    margin-top: 30px;
+}
+
+.form__button-submit {
+    padding: 10px;
+    width: 30%;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    background: #82756a;
+    color: #f2ebe7;
+    cursor: pointer;
+}
