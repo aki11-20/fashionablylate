@@ -1,0 +1,32 @@
+.thanks__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+}
+
+.thanks__text {
+    color: #f8f8f8;
+    font-size: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+.thanks__heading {
+    color: #82756a;
+}
+
+.thanks__button {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.thanks__button-submit {
+    padding: 10px;
+    width: 30%;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    background: #82756a;
+    color: #fff;
+    cursor: pointer;
+}
