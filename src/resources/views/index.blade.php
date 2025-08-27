@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
 <div class="contact-form__content">
     <div class="contact-form__heading">
         <h2>Contact</h2>
@@ -40,7 +39,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--radio">
-                    <label><input type="radio" name="gender" value="1" />
+                    <label><input type="radio" name="gender" value="1" checked />
                         男性
                     </label>
                     <label><input type="radio" name="gender" value="2" />
@@ -134,12 +133,13 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--select">
-                    <select name="category" placeholder="選択してください">
-                        <option>1.商品のお届けについて</option>
-                        <option>2.商品の交換について</option>
-                        <option>3.商品トラブル</option>
-                        <option>4.ショップへのお問い合わせ</option>
-                        <option>5.その他</option>
+                    <select name="category" required>
+                        <option value="" disabled selected hidden>選択してください</option>
+                        <option value="1.商品のお届けについて">1.商品のお届けについて</option>
+                        <option value="2.商品の交換について">2.商品の交換について</option>
+                        <option value="3.商品トラブル">3.商品トラブル</option>
+                        <option value="4.ショップへのお問い合わせ">4.ショップへのお問い合わせ</option>
+                        <option value="5.その他">5.その他</option>
                     </select>
                 </div>
             </div>

@@ -1,41 +1,45 @@
 .header {
-    background: #fff;
+  background:#fff;
+  padding:15px 30px;
+  box-shadow:0 2px 4px rgba(0,0,0,.1);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.header__inner {
+.logo {
+    font-size:1.5rem; color:#a0958a;
+}
+
+.header__actions {
+    display:flex; gap:10px;
+}
+
+.header-btn {
+  padding:8px 20px;
+  border:1px solid #ddd;
+  background:#fff;
+  color:#666;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:.9rem;
+  text-decoration:none;
+}
+
+.header-btn:hover {
+    border-color:#999;
+    color:#333;
+}
+
+.login-form__content {
     margin: 0 auto;
-    padding: 20px 15px;
+    padding: 30px 15px;
     max-width: 1230px;
+    background: #f2ebe7;
 }
 
-.header-utilities {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.header__logo{
-    color: #887b72;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 24px;
+.login-form__heading {
+    margin-bottom: 20px;
     text-align: center;
-}
-
-.header-utilities nav {
-    width: 18%;
-}
-
-.header-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.header-nav__button {
-    border: 1px solid #f2ebe7;
-    background: #f6f6f6;
-    color: #f2ebe7;
-    font-size: 16px;
-    cursor: pointer;
+    color: #887b72;
 }
