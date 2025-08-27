@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ContactController;
@@ -20,8 +21,20 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [ContactController::class, 'index']);
 Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
 Route::post('/contacts', [ContactController::class, 'store']);
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
-Route::get('/admin/contacts/{id}', [AdminController::class, 'show'])->name('admin.show');
-Route::get('/login', [LoginController::class, 'index']);
-Route::get('/register', [RegisterController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
+    Route::delete('/admin/{contact}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::get('/admin/contacts/{id}', [AdminController::class, 'show'])->name('admin.show');
+});

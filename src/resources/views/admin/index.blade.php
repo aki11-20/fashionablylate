@@ -1,141 +1,133 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+@endsection
+
+@section('header_actions')
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" class="logout-btn">logout</button>
+</form>
 @endsection
 
 @section('content')
-<div class="admin-form__content">
-    <div class="admin-form__inner">
-        <div class="admin-form__heading">
-            <h2>Admin</h2>
-        </div>
-    </div>
-    <form class="search-form" action="{{ route('admin.index') }}" method="GET">
-        <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="名前やメールアドレスを入力してください">
-        <select name="gender">
-            <option value="">性別</option>
-            <option value="1" {{ request('gender')=='1' ? 'selected' : '' }}>男性</option>
-            <option value="2" {{ request('gender')=='2' ? 'selected' : '' }}>女性</option>
-            <option value="3" {{ request('gender')=='3' ? 'selected' : '' }}>その他</option>
-        </select>
-        <select name="category">
-            <option value="">お問い合わせの種類</option>
-            <option value="商品のお届けについて">商品のお届けについて</option>
-            <option value="商品の交換について">商品の交換について</option>
-            <option value="商品トラブル">商品トラブル</option>
-            <option value="ショップへのお問い合わせ">ショップへのお問い合わせ</option>
-            <option value="その他">その他</option>
-        </select>
-        <select name="date">
-            <option value="">年/月/日</option>
-            <input type="date" name="date" value="{{ request('date') }}">
-        </select>
-        <div class="search-form__button">
-            <button class="search-form__button-submit" type="submit">検索</button>
-            <a href="{{ route('admin.index') }}"><button type="button">リセット</button></a>
+<div class="container">
+    <h1 class="title">Admin</h1>
+
+    <form class="controls" action="{{ route('admin.index') }}" method="GET">
+        <div class="controls-row">
+            <input type="text" class="form-control" name="keyword" value="{{ request('keyword') }}" placeholder="名前やメールアドレスを入力してください">
+            <select class="form-control" name="gender">
+                <option value="">性別</option>
+                <option value="1" {{ request('gender')=='1'?'selected':'' }}>男性</option>
+                <option value="2" {{ request('gender')=='2'?'selected':'' }}>女性</option>
+                <option value="3" {{ request('gender')=='3'?'selected':'' }}>その他</option>
+            </select>
+            <select class="form-control" name="category">
+                <option value="">お問い合わせの種類</option>
+                <option value="1.商品のお届けについて" {{ request('category')=='1.商品のお届けについて'?'selected':'' }}>1.商品のお届けについて</option>
+                <option value="2.商品の交換について" {{ request('category')=='2.商品の交換について'?'selected':'' }}>2.商品の交換について</option>
+                <option value="3.商品トラブル" {{ request('category')=='3.商品トラブル'?'selected':'' }}>3.商品トラブル</option>
+                <option value="4.ショップへのお問い合わせ" {{ request('category')=='4.ショップへのお問い合わせ'?'selected':'' }}>4.ショップへのお問い合わせ</option>
+                <option value="5.その他" {{ request('category')=='5.その他'?'selected':'' }}>5.その他</option>
+            </select>
+            <input type="date" class="form-control" name="date" value="{{ request('date') }}">
+            <button class="btn btn-search" type="submit">検索</button>
+            <a class="btn btn-reset" href="{{ route('admin.index') }}">リセット</a>
         </div>
     </form>
-    <div class="admin-form__export">
-        <a href="{{ route('admin.export') }}">
-            <button type="button">エクスポート</button>
-        </a>
+
+    <div class="controls-export">
+        <a class="btn btn-export" href="{{ route('admin.export', request()->query()) }}">エクスポート</a>
     </div>
-    <div class="admin-table">
-        <table class="admin-table__inner">
-            <tr class="admin-table__row">
-                <th class="admin-table__header">お名前</th>
-                <th class="admin-table__header">性別</th>
-                <th class="admin-table__header">メールアドレス</th>
-                <th class="admin-table__header">お問い合わせの種類</th>
-                <th class="admin-table__header">詳細</th>
-            </tr>
-            @foreach($contacts as $contact)
-            <tr class="admin-table__content">
-                <td class="admin-table__content">{{ $contact->name }}</td>
-                <td class="admin-table__content">
-                    @if($contact->gender == 1) 男性
-                    @elseif($contact->gender == 2) 女性
-                    @else その他
-                    @endif
-                </td>
-                <td class="admin-table__content">{{ $contact->email }}</td>
-                <td class="admin-table__content">{{ $contact->category }}</td>
-                <td class="admin-table__button">
-                    <button type="button" class="detail-btn" 
-                    data-name="{{ $contact->name }}"
-                    data-gender="{{ $contact->gender }}"
-                    data-email="{{ $contact->email }}"
-                    data-tel="{{ $contact->tel }}"
-                    data-address="{{ $contact->address }}"
-                    data-building="{{ $contact->building }}"
-                    data-category="{{ $contact->category }}"
-                    data-content="{{ $contact->content }}"
-                    >詳細</button>
-                </td>
-            </tr>
-            @endforeach
+
+    <div class="pagination">
+        {{ $contacts->appends(request()->query())->links() }}
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead class="table-header">
+                <tr>
+                    <th>お名前</th>
+                    <th>性別</th>
+                    <th>メールアドレス</th>
+                    <th>お問い合わせの種類</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($contacts as $c)
+                <tr>
+                    <td>{{ $c->name }}</td>
+                    <td>
+                        @if($c->gender==1) 男性
+                        @elseif($c->gender==2) 女性
+                        @else その他
+                        @endif
+                    </td>
+                    <td>{{ $c->email }}</td>
+                    <td>{{ $c->category }}</td>
+                    <td>
+                        <button type="button"
+                            class="btn btn-detail"
+                            data-id="{{ $c->id }}"
+                            data-name="{{ $c->name }}"
+                            data-gender="{{ $c->gender }}"
+                            data-email="{{ $c->email }}"
+                            data-tel="{{ $c->tel }}"
+                            data-address="{{ $c->address }}"
+                            data-building="{{ $c->building }}"
+                            data-category="{{ $c->category }}"
+                            data-content="{{ $c->content }}">詳細</button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
-        <div class="pagination">
-            {{ $contacts->links() }}
-        </div>
     </div>
-    <div id="detailModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p><strong>お名前</strong><span id="modal-name"></span></p>
-            <p><strong>性別</strong><span id="modal-gender"></span></p>
-            <p><strong>メールアドレス</strong><span id="modal-email"></span></p>
-            <p><strong>電話番号</strong><span id="modal-tel"></span></p>
-            <p><strong>住所</strong><span id="modal-address"></span></p>
-            <p><strong>建物名</strong><span id="modal-building"></span></p>
-            <p><strong>お問い合わせの種類</strong><span id="modal-category"></span></p>
-            <p><strong>お問い合わせ内容</strong><span id="modal-content"></span></p>
-        </div>
-        <div class="admin-delete__button">
-            <button class="admin-delete__button-submit" type="submit">削除</button>
-        </div>
+</div>
+
+{{-- モーダル --}}
+<div class="modal" id="detailModal">
+    <div class="modal__content">
+        <span class="modal__close">&times;</span>
+        <p><strong>お名前</strong> <span id="modal-name"></span></p>
+        <p><strong>性別</strong> <span id="modal-gender"></span></p>
+        <p><strong>メールアドレス</strong> <span id="modal-email"></span></p>
+        <p><strong>電話番号</strong> <span id="modal-tel"></span></p>
+        <p><strong>住所</strong> <span id="modal-address"></span></p>
+        <p><strong>建物名</strong> <span id="modal-building"></span></p>
+        <p><strong>お問い合わせの種類</strong> <span id="modal-category"></span></p>
+        <p><strong>お問い合わせ内容</strong> <span id="modal-content"></span></p>
     </div>
 </div>
 @endsection
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const modal = document.getElementById("detailModal");
-        const closeBtn = modal.querySelector(".close");
+    // シンプルに data-* から詰める（API不要）
+    document.querySelectorAll('.btn-detail').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const g = btn.dataset.gender === '1' ? '男性' : (btn.dataset.gender === '2' ? '女性' : 'その他');
+            document.getElementById('modal-name').textContent = btn.dataset.name ?? '';
+            document.getElementById('modal-gender').textContent = g;
+            document.getElementById('modal-email').textContent = btn.dataset.email ?? '';
+            document.getElementById('modal-tel').textContent = btn.dataset.tel ?? '';
+            document.getElementById('modal-address').textContent = btn.dataset.address ?? '';
+            document.getElementById('modal-building').textContent = btn.dataset.building ?? '';
+            document.getElementById('modal-category').textContent = btn.dataset.category ?? '';
+            document.getElementById('modal-content').textContent = btn.dataset.content ?? '';
 
-        document.querySelectorAll(".detail-btn").forEach(btn => {
-            btn.addEventListener("click", function() {
-                let id = this.dataset.id;
-
-                fetch('/admin/contacts/${id}')
-                    .then(respanse => response.json())
-                    .then(data => {
-                        document.getElementById("modal-name").textContent = data.name;
-                        document.getElementById("modal-gender").textContent = data.gender == 1 ? "男性" : (data.gender == 2 ? "女性" : "その他");
-                        document.getElementById("modal-email").textContent = data.email;
-                        document.getElementById("modal-tel").textContent = data.tel;
-                        document.getElementById("modal-address").textContent = data.address;
-                        document.getElementById("modal-building").textContent = data.building;
-                        document.getElementById("modal-category").textContent = data.category;
-                        document.getElementById("modal-content").textContent = data.content;
-                        document.getElementById("modal-created").textContent = Date(data.created_at).toLocaleDateString();
-
-                        modal.style.display = "block";
-                    });
-            });
+            document.getElementById('detailModal').classList.add('active');
         });
-
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
     });
-    </script>
-    @endsection
+
+    const modal = document.getElementById('detailModal');
+    modal.querySelector('.modal__close').addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
+</script>
+@endsection

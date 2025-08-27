@@ -1,3 +1,36 @@
+.header {
+  background:#fff;
+  padding:15px 30px;
+  box-shadow:0 2px 4px rgba(0,0,0,.1);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo {
+    font-size:1.5rem; color:#a0958a;
+}
+
+.header__actions {
+    display:flex; gap:10px;
+}
+
+.header-btn {
+  padding:8px 20px;
+  border:1px solid #ddd;
+  background:#fff;
+  color:#666;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:.9rem;
+  text-decoration:none;
+}
+
+.header-btn:hover {
+    border-color:#999;
+    color:#333;
+}
+
 .login-form__content {
     margin: 0 auto;
     padding: 30px 15px;
@@ -51,3 +84,5 @@
     color: #f2ebe7;
     cursor: pointer;
 }
+body{ background:#f2ebe7; }
+.login-form__content{ background:#fff; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.06); }
