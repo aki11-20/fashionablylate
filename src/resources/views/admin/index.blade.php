@@ -12,6 +12,7 @@
 @endsection
 
 @section('content')
+
 <div class="container">
     <h1 class="title">Admin</h1>
 
