@@ -18,9 +18,12 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', [ContactController::class, 'index']);
-Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
-Route::post('/contacts', [ContactController::class, 'store']);
+Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
+Route::post('/contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
+Route::get('/contacts/confirm', function() {
+    return redirect()->route('contacts.index');
+});
+Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');

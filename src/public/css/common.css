@@ -10,7 +10,7 @@
 .logo {
     font-family: "PT Serif", serif;
     font-size: 40px;
-    color: #887b72;
+    color: #9f9187;
     font-weight: 400;
     grid-column: 2;
     justify-self: center;
@@ -25,9 +25,9 @@
 
 .header-btn {
   padding:8px 20px;
-  border:1px solid #ddd;
-  background:#fff;
-  color:#666;
+  border:1px solid #b5b6b0;
+  background: #f3f6f6;
+  color: #b5b6b0;
   border-radius:4px;
   cursor:pointer;
   font-size:.9rem;
@@ -36,18 +36,6 @@
 
 .header-btn:hover {
     border-color:#999;
-    color:#333;
+    color:#8c8d87;
 }
 
-.login-form__content {
-    margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
-    background: #f2ebe7;
-}
-
-.login-form__heading {
-    margin-bottom: 20px;
-    text-align: center;
-    color: #887b72;
-}
