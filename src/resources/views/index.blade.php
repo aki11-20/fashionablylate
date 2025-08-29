@@ -13,7 +13,7 @@
     <div class="contact-form__heading">
         <p class="contact-title">Contact</p>
     </div>
-    <form class="form" action="/contacts/confirm" method="post" novalidate>
+    <form class="form" action="{{ route('contacts.confirm') }}" method="post" novalidate>
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -161,7 +161,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--textarea">
-                    <textarea name="content" placeholder="お問い合わせ内容をご記入ください"></textarea>
+                    <textarea name="content" placeholder="お問い合わせ内容をご記入ください">{{ old('content') }}</textarea>
                 </div>
                 <div class="form__error">
                     @error('content')

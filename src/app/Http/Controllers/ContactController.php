@@ -17,8 +17,15 @@ class ContactController extends Controller
     {
         $data = $request->validated();
 
-        
-        $data['name'] = $data['first_name'] . ' ' . $data['last_name'];
+        if ($request->input('action')==='back') {
+            return redirect()->route('contacts.index')->withInput();
+        }
+
+        $data = array_merge([
+            'building' => '',
+        ], $data);
+
+        $data['name'] = $data['first_name'] . '　' . $data['last_name'];
         $data['tel'] = $data['tel1'] . $data['tel2'] . $data['tel3'];
 
         return view('confirm', ['contact' => $data]);
@@ -26,9 +33,25 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        $data = $request->only([
-            'name', 'gender', 'email', 'tel', 'address', 'building', 'category', 'content'
-        ]);
+        $name = $request->input('name');
+        if (!$name) {
+            $name = trim(($request->input('first_name', '')) . ' ' . ($request->input('last_name', '')));
+        }
+
+        $tel = $request->input('tel');
+        if (!$tel) {
+            $tel = ($request->input('tel1', '')).($request->input('tel2', '')).($request->input('tel3', ''));
+        }
+        $data = [
+            'name' => $name,
+            'gender' => $request->input('gender'),
+            'email' => $request->input('email'),
+            'tel' => $tel,
+            'address' => $request->input('address'),
+            'building' => $request->input('building', ''),
+            'category' => $request->input('category'),
+            'content' => $request->input('content'),
+        ];
         Contact::create($data);
 
         return view('thanks');

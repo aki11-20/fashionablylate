@@ -2,14 +2,16 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/confirm.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&family=Noto+Serif+JP:wght@200..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
 @endsection
 
 @section('content')
-<div class="confirm__content">
+<div class="confirm-form__content">
     <div class="confirm__heading">
-        <h2>Confirm</h2>
+        <p class="confirm-title">Confirm</p>
     </div>
-    <form class="form" action="/contacts" method="post">
+    <form class="form" action="{{ route('contacts.store') }}" method="post">
         @csrf
         <div class="confirm-table">
             <table class="confirm-table__inner">
@@ -17,6 +19,8 @@
                     <th class="confirm-table__header">お名前</th>
                     <td class="confirm-table__text">
                         {{ $contact['name'] }}
+                        <input type="hidden" name="first_name" value="{{ $contact['first_name'] }}">
+                        <input type="hidden" name="last_name" value="{{ $contact['last_name'] }}">
                         <input type="hidden" name="name" value="{{ $contact['name'] }}">
                     </td>
                 </tr>
@@ -44,6 +48,9 @@
                     <th class="confirm-table__header">電話番号</th>
                     <td class="confirm-table__text">
                         {{ $contact['tel'] }}
+                        <input type="hidden" name="tel1" value="{{ $contact['tel1'] }}">
+                        <input type="hidden" name="tel2" value="{{ $contact['tel2'] }}">
+                        <input type="hidden" name="tel3" value="{{ $contact['tel3'] }}">
                         <input type="hidden" name="tel" value="{{ $contact['tel'] }}">
                     </td>
                 </tr>
@@ -79,7 +86,7 @@
         </div>
         <div class="form__button">
             <button class="form__button-submit" type="submit">送信</button>
-            <button class="form__button-submit" type="submit">修正</button>
+            <button class="link-btn" type="submit" formaction="{{ route('contacts.confirm') }}" name="action" value="back">修正</button>
         </div>
     </form>
 </div>
