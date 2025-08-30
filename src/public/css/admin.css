@@ -1,49 +1,93 @@
-.logout-btn {
-    padding: 8px 20px;
-    border: 1px solid #ddd;
+.admin-form__content {
+    margin: 16px auto 0;
+    padding: 10px 15px;
+    max-width: 1230px;
     background: #fff;
-    color: #999;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s;
 }
 
-.logout-btn:hover {
-    border-color: #999;
-    color: #666;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-.title {
-    font-size: 2rem;
-    color: #a0958a;
+.admin__title {
+    font-family: "PT Serif", serif;
+    font-size: 30px;
     text-align: center;
+    color: #9f9187;
     margin-bottom: 40px;
-    font-weight: 400;
 }
 
 .controls {
-    display: flex;
-    gap: 15px;
+    width: 100%;
     margin-bottom: 30px;
-    flex-wrap: wrap;
-    align-items: center;
 }
 
+.controls-row {
+    display: flex;
+    align-items: center;
+    gap: 46px;          /* 各入力欄の間隔 */
+    flex-wrap: nowrap;  /* 折り返しを禁止 */
+    width: 100%;
+}
+.controls-row input[name="keyword"] {
+    flex: 0 0 340px;   /* ← ここで固定幅に */
+    max-width: 360px;  /* 最大幅も抑える */
+    min-width: 300px;
+}
+
+.controls-row select[name="gender"] {
+    flex: 0 0 90px;
+}
+
+.controls-row select[name="category"] {
+    flex: 0 0 200px;
+}
+.controls-row input[name="date"] {
+    flex: 0 0 140px;
+    padding-left: 10px;
+}
+
+
+.controls-row .form-control {
+    width: auto;
+    min-width: 0; /* はみ出し防止 */
+}
+
+/* ボタン群 */
+.form-button {
+    margin-left: auto;  /* 右に押し出す */
+    display: flex;
+    align-items: center;
+    gap: 0;          /* 検索とリセットの間隔 */
+    gap:10px;          /* 検索とリセットの間隔。欄の gap と揃えて綺麗に */
+    white-space:nowrap;
+}
+
+.form-button .btn-search {
+    margin-right: 32px;
+}
+
+.form-button .btn-reset {
+    margin-right: 0;
+}
+
+/* レスポンシブ */
+@media (max-width: 960px) {
+    .controls-row {
+        grid-template-columns: 1fr 1fr;
+    }
+    .form-button {
+        grid-column: 1 / -1; /* 最後の行に配置 */
+        justify-self: end;
+    }
+}
+
+/* 共通入力欄 */
 .form-control {
-    padding: 12px 15px;
+    padding: 0px 16px;
+    height: 50px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 0.95rem;
-    background: #fff;
-    color: #666;
-    min-width: 200px;
+    border-radius: 2px;
+    font-size: 1rem;
+    background: #f9f8f7;
+    color: #a69991;
+    box-sizing: border-box;
 }
 
 .form-control::placeholder {
@@ -55,206 +99,245 @@
     border-color: #a0958a;
 }
 
+/* ボタン共通 */
 .btn {
-    padding: 12px 25px;
+    padding: 0px 28px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
-    border-radius: 4px;
+    border-radius: 2px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 1rem;
     transition: all 0.2s;
 }
 
+/* 検索・リセット・エクスポート */
 .btn-search {
     background: #a0958a;
     color: #fff;
 }
-
 .btn-search:hover {
     background: #8a7a6f;
 }
-
 .btn-reset {
     background: #d4a574;
     color: #fff;
+    text-decoration: none;
 }
-
 .btn-reset:hover {
     background: #c19660;
+    text-decoration: none;
 }
-
 .btn-export {
     background: #e0ddd8;
-    color: #666;
+    color: #a69991;
     margin-bottom: 20px;
+    text-decoration: none;
 }
-
 .btn-export:hover {
     background: #d4d1cc;
+    text-decoration: none;
 }
 
-.pagination {
+/* ページネーション */
+.pagination-wrapper {
+    flex: 1;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
 }
-
+.pagination {
+    display: inline-flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 .pagination a,
 .pagination span {
-    padding: 8px 12px;
+    display: inline-block;
+    min-width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-right: none;
+    font-size: 0.85rem;
     text-decoration: none;
     color: #666;
-    border-radius: 4px;
     transition: all 0.2s;
+    background: #fff;
 }
-
+.pagination a:first-child,
+.pagination span:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.pagination a:last-child,
+.pagination span:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-right: 1px solid #ddd;
+}
 .pagination a:hover {
-    background: #f0f0f0;
+    background: #f8f9fa;
 }
-
 .pagination .current {
     background: #a0958a;
     color: #fff;
+    border-color: #a0958a;
+    font-weight: bold;
+}
+.pagination .disabled {
+    background: #f5f5f5;
+    color: #ccc;
+    border-color: #eee;
 }
 
+/* テーブル */
 .table-container {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 2px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
 .table {
     width: 100%;
     border-collapse: collapse;
 }
-
 .table-header {
     background: #a0958a;
     color: #fff;
 }
-
 .table th,
 .table td {
     padding: 15px 20px;
     text-align: left;
     border-bottom: 1px solid #eee;
 }
-
 .table th {
     font-weight: 600;
     font-size: 0.95rem;
 }
-
 .table td {
     font-size: 0.9rem;
     color: #555;
 }
-
 .table tbody tr:hover {
     background: #f8f9fa;
 }
 
+/* 詳細ボタン */
 .btn-detail {
     padding: 6px 15px;
     background: #f8f9fa;
     color: #666;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 2px;
     font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.2s;
 }
-
 .btn-detail:hover {
     background: #e9ecef;
     border-color: #999;
 }
 
-@media (max-width: 768px) {
-    .header {
-        padding: 15px 20px;
-    }
-
-    .logo {
-        font-size: 1.2rem;
-    }
-
-    .container {
-        padding: 20px 15px;
-    }
-
-    .page-title {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
-    }
-
-    .controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .form-control,
-    .btn {
-        min-width: 100%;
-    }
-
-    .pagination {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .table-container {
-        overflow-x: auto;
-    }
-
-    .table {
-        min-width: 700px;
-    }
-
-    .table th,
-    .table td {
-        padding: 12px 15px;
-        font-size: 0.85rem;
-    }
-}
-
-.controls-row {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-}
-
-.controls-export {
-    display: flex;
-    justify-content: flex-start;
-}
-
-/* 既存に追加 */
+/* モーダル */
 .modal {
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.5); z-index:9999;
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
 }
 .modal.active {
-    display:block;
+    display: flex;
 }
 .modal__content {
-    background:#fff;
-    width:90%;
-    max-width:520px;
-    margin:10vh auto;
-    padding:24px;
-    border-radius:8px;
-    position:relative;
+    background: #fff;
+    width: 85%;
+    max-width: 700px;
+    max-height: 90vh;
+    min-height: 80vh;
+    padding: 60px 32px 32px;
+    border-radius: 2px;
+    position: relative;
+    border: 2px solid #a0958a;
+    color: #a0958a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+.modal__row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.modal__row strong {
+    width: 180px;        /* ラベルの幅固定 */
+    text-align: left;
+    font-weight: 600;
+    flex-shrink: 0;
+    font-size: 1.15rem;
+    margin-right: 20px;
+}
+
+.modal__row span {
+    flex: 1;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
 .modal__close {
-    position:absolute;
-    top:10px;
-    right:14px;
-    font-size:22px;
-    cursor:pointer;
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #a0958a;
+    border: 2px solid #a0958a;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    background: #fff;
+    transition: all 0.2s;
+}
+.modal__close:hover {
+    background: #a0958a;            /* ホバー時は反転 */
+    color: #fff;
+}
+
+.modal__footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.btn-delete {
+    background: #d9534f;
+    color: #fff;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 2px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background: #c9302c;
 }

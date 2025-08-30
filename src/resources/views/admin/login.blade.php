@@ -9,7 +9,7 @@
 @endsection
 
 @section('header_actions')
-<a class="header-btn" href="{{ route('register.form') }}">register</a>
+<a class="header-btn" href="{{ route('register') }}">register</a>
 @endsection
 
 @section('content')
@@ -18,7 +18,7 @@
         <p class="login-title">Login</p>
     </div>
     <div class="login-form__content">
-        <form class="form" action="{{ route('login') }}" method="POST">
+        <form class="form" action="{{ route('login') }}" method="POST" novalidate>
             @csrf
             <div class="form__group">
                 <div class="form__group-title">

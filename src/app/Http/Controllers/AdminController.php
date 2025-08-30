@@ -86,4 +86,13 @@ class AdminController extends Controller
             fclose($out);
         }, 200, $headers);
     }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        return redirect()
+        ->route('admin.index')
+        ->with('status', '削除しました');
+    }
 }
