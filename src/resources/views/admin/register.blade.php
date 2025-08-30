@@ -19,7 +19,7 @@
     </div>
 
     <div class="register-form__content">
-        <form class="form" action="{{ route('register.store') }}" method="POST">
+        <form class="form" action="{{ route('register') }}" method="POST" novalidate>
             @csrf
 
             <div class="form__group">
