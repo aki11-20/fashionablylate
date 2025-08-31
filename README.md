@@ -26,12 +26,12 @@
 
 ## 使用技術
 
-・ PHP 8.4.10
-・ PHP(Docker コンテナ)8.1.33
-・ Laravel 8.83.29
-・ Composer 2.8.11
-・ MySQL 8.0.36
-・ Nginx 1.21.1
+- PHP 8.4.10
+- PHP(Docker コンテナ)8.1.33
+- Laravel 8.83.29
+- Composer 2.8.11
+- MySQL 8.0.36
+- Nginx 1.21.1
 
 ## ER 図
 
@@ -39,6 +39,6 @@
 
 ## URL
 
-・ 開発環境: http://localhost/
-・ phpMyAdmin: http://localhost:8080
+- 開発環境: http://localhost/
+- phpMyAdmin: http://localhost:8080
 
