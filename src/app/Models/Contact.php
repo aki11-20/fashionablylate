@@ -19,3 +19,4 @@ class Contact extends Model
         'content'
     ];
 }
+

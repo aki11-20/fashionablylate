@@ -12,3 +12,4 @@ class ContactSeeder extends Seeder
         Contact::factory()->count(35)->create();
     }
 }
+

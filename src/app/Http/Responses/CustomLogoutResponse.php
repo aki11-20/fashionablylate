@@ -11,3 +11,4 @@ class CustomLogoutResponse implements LogoutResponseContract
         return redirect()->route('login');
     }
 }
+

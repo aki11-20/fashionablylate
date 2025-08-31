@@ -1,8 +1,8 @@
 .contact-form__content {
-  margin: 16px auto 0;
-  padding: 10px 15px;
-  max-width: 1230px;
-  background: #fff;
+    margin: 16px auto 0;
+    padding: 10px 15px;
+    max-width: 1230px;
+    background: #fff;
 }
 
 .contact-title {
@@ -95,8 +95,8 @@
 }
 
 .form__input--select select option {
-  color: #a69991;
-  font-weight: normal;
+    color: #a69991;
+    font-weight: normal;
 }
 
 .form__input--radio {

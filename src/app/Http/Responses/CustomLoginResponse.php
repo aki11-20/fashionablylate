@@ -11,3 +11,4 @@ class CustomLoginResponse implements LoginResponseContract
         return redirect('/admin');
     }
 }
+

@@ -11,3 +11,4 @@ class CustomRegisterResponse implements RegisterResponseContract
         return redirect('/admin');
     }
 }
+

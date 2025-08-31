@@ -13,3 +13,4 @@ class DatabaseSeeder extends Seeder
         \App\Models\Contact::factory()->count(35)->create();
     }
 }
+

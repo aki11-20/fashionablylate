@@ -28,7 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
     Route::delete('/admin/{contact}', [AdminController::class, 'destroy'])->name('admin.destroy');
-    Route::get('/admin/contacts/{id}', [AdminController::class, 'show'])->name('admin.show');
 });
 
 Route::middleware('guest')->group(function () {

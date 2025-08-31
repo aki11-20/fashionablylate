@@ -21,13 +21,13 @@
 .controls-row {
     display: flex;
     align-items: center;
-    gap: 46px;          /* 各入力欄の間隔 */
-    flex-wrap: nowrap;  /* 折り返しを禁止 */
+    gap: 46px;
+    flex-wrap: nowrap;
     width: 100%;
 }
 .controls-row input[name="keyword"] {
-    flex: 0 0 340px;   /* ← ここで固定幅に */
-    max-width: 360px;  /* 最大幅も抑える */
+    flex: 0 0 340px;
+    max-width: 360px;
     min-width: 300px;
 }
 
@@ -43,19 +43,17 @@
     padding-left: 10px;
 }
 
-
 .controls-row .form-control {
     width: auto;
-    min-width: 0; /* はみ出し防止 */
+    min-width: 0;
 }
 
-/* ボタン群 */
 .form-button {
-    margin-left: auto;  /* 右に押し出す */
+    margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 0;          /* 検索とリセットの間隔 */
-    gap:10px;          /* 検索とリセットの間隔。欄の gap と揃えて綺麗に */
+    gap: 0;
+    gap:10px;
     white-space:nowrap;
 }
 
@@ -67,18 +65,16 @@
     margin-right: 0;
 }
 
-/* レスポンシブ */
 @media (max-width: 960px) {
     .controls-row {
         grid-template-columns: 1fr 1fr;
     }
     .form-button {
-        grid-column: 1 / -1; /* 最後の行に配置 */
+        grid-column: 1 / -1;
         justify-self: end;
     }
 }
 
-/* 共通入力欄 */
 .form-control {
     padding: 0px 16px;
     height: 50px;
@@ -99,7 +95,6 @@
     border-color: #a0958a;
 }
 
-/* ボタン共通 */
 .btn {
     padding: 0px 28px;
     height: 50px;
@@ -113,7 +108,6 @@
     transition: all 0.2s;
 }
 
-/* 検索・リセット・エクスポート */
 .btn-search {
     background: #a0958a;
     color: #fff;
@@ -141,7 +135,6 @@
     text-decoration: none;
 }
 
-/* ページネーション */
 .pagination-wrapper {
     flex: 1;
     display: flex;
@@ -194,7 +187,6 @@
     border-color: #eee;
 }
 
-/* テーブル */
 .table-container {
     background: #fff;
     border-radius: 2px;
@@ -227,7 +219,6 @@
     background: #f8f9fa;
 }
 
-/* 詳細ボタン */
 .btn-detail {
     padding: 6px 15px;
     background: #f8f9fa;
@@ -243,7 +234,6 @@
     border-color: #999;
 }
 
-/* モーダル */
 .modal {
     display: none;
     position: fixed;
@@ -283,7 +273,7 @@
 }
 
 .modal__row strong {
-    width: 180px;        /* ラベルの幅固定 */
+    width: 180px;
     text-align: left;
     font-weight: 600;
     flex-shrink: 0;
@@ -315,8 +305,9 @@
     background: #fff;
     transition: all 0.2s;
 }
+
 .modal__close:hover {
-    background: #a0958a;            /* ホバー時は反転 */
+    background: #a0958a;
     color: #fff;
 }
 

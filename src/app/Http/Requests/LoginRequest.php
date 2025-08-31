@@ -39,3 +39,4 @@ class LoginRequest extends FortifyLoginRequest
         ];
     }
 }
+

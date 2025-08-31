@@ -101,7 +101,6 @@
     </div>
 </div>
 
-{{-- モーダル --}}
 <div class="modal" id="detailModal">
     <div class="modal__content">
         <span class="modal__close">&times;</span>
@@ -113,7 +112,6 @@
         <div class="modal__row"><strong>建物名</strong> <span id="modal-building"></span></div>
         <div class="modal__row"><strong>お問い合わせの種類</strong> <span id="modal-category"></span></div>
         <div class="modal__row"><strong>お問い合わせ内容</strong> <span id="modal-content"></span></div>
-
 
         <div class="modal__footer">
             <form id="deleteForm" method="POST" action="">
@@ -128,7 +126,6 @@
 
 @section('scripts')
 <script>
-    // シンプルに data-* から詰める（API不要）
     document.querySelectorAll('.btn-detail').forEach(btn => {
         btn.addEventListener('click', () => {
             const g = btn.dataset.gender === '1' ? '男性' : (btn.dataset.gender === '2' ? '女性' : 'その他');

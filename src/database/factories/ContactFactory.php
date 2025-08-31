@@ -36,3 +36,4 @@ class ContactFactory extends Factory
         ];
     }
 }
+

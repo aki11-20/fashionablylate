@@ -35,16 +35,6 @@ class AdminController extends Controller
 
         return view('admin.index', compact('contacts'));
     }
-    public function show($id)
-    {
-        $contact = Contact::findOrFail($id);
-
-        if (request()->ajax()) {
-            return response()->json($contact);
-        }
-
-        return view('admin.show', compact('contact'));
-    }
     public function export(Request $request): StreamedResponse
     {
         $q = Contact::query();
