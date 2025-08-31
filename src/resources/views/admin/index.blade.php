@@ -10,7 +10,10 @@
 @endsection
 
 @section('header_actions')
-<a class="header-btn" href="{{ route('logout') }}">logout</a>
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button class="header-btn" type="submit">logout</button>
+</form>
 @endsection
 
 @section('content')
@@ -23,18 +26,19 @@
         <div class="controls-row">
             <input type="text" class="form-control" name="keyword" value="{{ request('keyword') }}" placeholder="名前やメールアドレスを入力してください">
             <select class="form-control" name="gender">
-                <option value="">性別</option>
+                <option value="" disabled{{request('gender')=== null ? 'selected' : '' }}>性別</option>
+                <option value="all" {{ request('gender') === 'all' ? 'selected' : '' }}>全て</option>
                 <option value="1" {{ request('gender')=='1'?'selected':'' }}>男性</option>
                 <option value="2" {{ request('gender')=='2'?'selected':'' }}>女性</option>
                 <option value="3" {{ request('gender')=='3'?'selected':'' }}>その他</option>
             </select>
             <select class="form-control" name="category">
                 <option value="">お問い合わせの種類</option>
-                <option value="1.商品のお届けについて" {{ request('category')=='1.商品のお届けについて'?'selected':'' }}>商品のお届けについて</option>
-                <option value="2.商品の交換について" {{ request('category')=='2.商品の交換について'?'selected':'' }}>商品の交換について</option>
-                <option value="3.商品トラブル" {{ request('category')=='3.商品トラブル'?'selected':'' }}>商品トラブル</option>
-                <option value="4.ショップへのお問い合わせ" {{ request('category')=='4.ショップへのお問い合わせ'?'selected':'' }}>ショップへのお問い合わせ</option>
-                <option value="5.その他" {{ request('category')=='5.その他'?'selected':'' }}>その他</option>
+                <option value="商品のお届けについて" {{ request('category')=='商品のお届けについて'?'selected':'' }}>商品のお届けについて</option>
+                <option value="商品の交換について" {{ request('category')=='商品の交換について'?'selected':'' }}>商品の交換について</option>
+                <option value="商品トラブル" {{ request('category')=='商品トラブル'?'selected':'' }}>商品トラブル</option>
+                <option value="ショップへのお問い合わせ" {{ request('category')=='ショップへのお問い合わせ'?'selected':'' }}>ショップへのお問い合わせ</option>
+                <option value="その他" {{ request('category')=='その他'?'selected':'' }}>その他</option>
             </select>
             <input type="date" class="form-control" name="date" value="{{ request('date') }}">
 

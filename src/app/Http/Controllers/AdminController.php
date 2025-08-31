@@ -20,7 +20,9 @@ class AdminController extends Controller
             });
         }
         if ($g = $request->gender) {
-            $q->where('gender', $g);
+            if ($g !== 'all') {
+                $q->where('gender', $g);
+            }
         }
         if ($cat = $request->category) {
             $q->where('category', $cat);
@@ -29,7 +31,7 @@ class AdminController extends Controller
             $q->whereDate('created_at', $d);
         }
 
-        $contacts = $q->orderByDesc('created_at')->paginate(10);
+        $contacts = $q->orderByDesc('created_at')->paginate(7);
 
         return view('admin.index', compact('contacts'));
     }
