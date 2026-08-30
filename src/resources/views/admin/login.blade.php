@@ -8,10 +8,6 @@
 
 @endsection
 
-@section('header_actions')
-<a class="header-btn" href="{{ route('register') }}">register</a>
-@endsection
-
 @section('content')
 <div class="login-wrapper">
     <div class="login-form__heading">
