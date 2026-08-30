@@ -27,6 +27,7 @@ services:
         volumes:
             - ./docker/mysql/data:/var/lib/mysql
             - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+            - ./docker/mysql/init:/docker-entrypoint-initdb.d
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -39,4 +40,3 @@ services:
             - mysql
         ports:
             - 8080:80
-            

@@ -9,7 +9,22 @@ class ContactSeeder extends Seeder
 {
     public function run(): void
     {
-        Contact::factory()->count(35)->create();
+        for ($number = 1; $number <= 35; $number++) {
+            $email = sprintf('demo-contact-%02d@example.test', $number);
+            $attributes = Contact::factory()->make()->only([
+                'name',
+                'gender',
+                'tel',
+                'address',
+                'building',
+                'category',
+                'content',
+            ]);
+
+            Contact::firstOrCreate(
+                ['email' => $email],
+                $attributes
+            );
+        }
     }
 }
-

@@ -93,6 +93,12 @@
                     @error('tel1')
                     {{ $message }}
                     @enderror
+                    @error('tel2')
+                    {{ $message }}
+                    @enderror
+                    @error('tel3')
+                    {{ $message }}
+                    @enderror
                 </div>
             </div>
         </div>
@@ -139,11 +145,11 @@
                 <div class="form__input--select">
                     <select name="category" required>
                         <option value="" disabled {{ old('category') ? '' : 'selected' }} hidden>選択してください</option>
-                        <option value="1.商品のお届けについて" {{ old('category')=='1.商品のお届けについて'?'selected':'' }}>1.商品のお届けについて</option>
-                        <option value="2.商品の交換について" {{ old('category')=='2.商品の交換について'?'selected':'' }}>2.商品の交換について</option>
-                        <option value="3.商品トラブル" {{ old('category')=='3.商品トラブル'?'selected':'' }}>3.商品トラブル</option>
-                        <option value="4.ショップへのお問い合わせ" {{ old('category')=='4.ショップへのお問い合わせ'?'selected':'' }}>4.ショップへのお問い合わせ</option>
-                        <option value="5.その他" {{ old('category')=='5.その他'?'selected':'' }}>5.その他</option>
+                        <option value="商品のお届けについて" {{ old('category')=='商品のお届けについて'?'selected':'' }}>1.商品のお届けについて</option>
+                        <option value="商品の交換について" {{ old('category')=='商品の交換について'?'selected':'' }}>2.商品の交換について</option>
+                        <option value="商品トラブル" {{ old('category')=='商品トラブル'?'selected':'' }}>3.商品トラブル</option>
+                        <option value="ショップへのお問い合わせ" {{ old('category')=='ショップへのお問い合わせ'?'selected':'' }}>4.ショップへのお問い合わせ</option>
+                        <option value="その他" {{ old('category')=='その他'?'selected':'' }}>5.その他</option>
                     </select>
                 </div>
                 <div class="form__error">

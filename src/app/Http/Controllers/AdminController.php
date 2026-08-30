@@ -11,25 +11,7 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $q = Contact::query();
-
-        if ($kw = $request->keyword) {
-            $q->where(function ($qq) use ($kw) {
-                $qq->where('name', 'like', "%{$kw}%")
-                    ->orWhere('email', 'like', "%{$kw}%");
-            });
-        }
-        if ($g = $request->gender) {
-            if ($g !== 'all') {
-                $q->where('gender', $g);
-            }
-        }
-        if ($cat = $request->category) {
-            $q->where('category', $cat);
-        }
-        if ($d = $request->date) {
-            $q->whereDate('created_at', $d);
-        }
+        $q = $this->buildContactQuery($request);
 
         $contacts = $q->orderByDesc('created_at')->paginate(7);
 
@@ -37,16 +19,7 @@ class AdminController extends Controller
     }
     public function export(Request $request): StreamedResponse
     {
-        $q = Contact::query();
-        if ($kw = $request->keyword) {
-            $q->where(function ($qq) use ($kw) {
-                $qq->where('name', 'like', "%{$kw}%")
-                    ->orWhere('email', 'like', "%{$kw}%");
-            });
-        }
-        if ($g = $request->gender) $q->where('gender', $g);
-        if ($cat = $request->category) $q->where('category', $cat);
-        if ($d = $request->date) $q->whereDate('created_at', $d);
+        $q = $this->buildContactQuery($request);
 
         $filename = 'contacts_' . now()->format('Ymd_His') . '.csv';
         $headers = [
@@ -77,6 +50,29 @@ class AdminController extends Controller
             });
             fclose($out);
         }, 200, $headers);
+    }
+
+    private function buildContactQuery(Request $request)
+    {
+        $q = Contact::query();
+
+        if ($kw = $request->keyword) {
+            $q->where(function ($qq) use ($kw) {
+                $qq->where('name', 'like', "%{$kw}%")
+                    ->orWhere('email', 'like', "%{$kw}%");
+            });
+        }
+        if (in_array($request->gender, ['1', '2', '3'], true)) {
+            $q->where('gender', $request->gender);
+        }
+        if ($cat = $request->category) {
+            $q->where('category', $cat);
+        }
+        if ($d = $request->date) {
+            $q->whereDate('created_at', $d);
+        }
+
+        return $q;
     }
 
     public function destroy(Contact $contact)
